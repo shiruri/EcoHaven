@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Lator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #0e0b0b;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar-links {
+            display: flex;
+            gap: 20px;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 12px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navbar a:hover {
+            color: #ccc;
+        }
+        .desc-container {
+            padding: 50px 20px;
+            background-color: rgb(37, 34, 34);
+            width: 100%;
+            color: rgb(206, 206, 206);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .heading { 
+            text-align: center;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .heading h1 {
+            font-size: 30px;
+            font-style: italic;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .quiz-section {
+            padding: 40px 0;
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        label {
+            font-size: 1.1rem;
+            display: block;
+            margin: 10px 0;
+        }
+        .result {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #e0f7fa;
+            border-radius: 10px;
+            text-align: center;
+        }
+        h3 {
+            margin-top: 20px;
+            font-size: 1.4rem;
+            color: #004d00;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        table th, table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        table th {
+            background-color: #004d00;
+            color: white;
+        }
+        table td {
+            background-color: #f9f9f9;
+        }
+        footer {
+            background-color: #004d00;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        ::-webkit-scrollbar {
+            width: 12px;
+          }
+          
+          ::-webkit-scrollbar-track {
+            background: rgba(153, 14, 14, 0.2);
+            border-radius: 10px;
+          }
+          
+          ::-webkit-scrollbar-thumb {
+            background-color: rgba(207, 23, 23, 0.5);
+            border-radius: 10px;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+          }
+          
+          ::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(196, 169, 169, 0.8);
+          }
+          
+          html {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(8, 201, 8, 0.5) rgba(255, 255, 255, 0.2); /* Scrollbar design hmm will update soon to match the vibe */
+          }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-links">
+            <a href="index.html">Home</a>
+            <a href="Eco-Lator.html">Eco-Calculator</a>
+            <a href="Zero-Waste Tips.html">Zero-Waste Tips</a>
+            <a href="Marketplace.html">EcoNest Marketplace</a>
+            <a href="Account.html">Account</a>
+            <a href="community.html">Community Chat</a>
+            <a href="about-us.html">About Us</a>
+        </div>  
+    </div>
+    <div class="desc-container">
+        <div class="heading">
+            <h1>Eco Calculator</h1>
+            <p>Answer the following questions to find your eco score and carbon footprint.</p>
+        </div>
+    </div>
+    <div class="container">
+        <section class="quiz-section">
+            <form>
+                <div class="question">
+                    <p>1. How much water do you use daily (in gallons)?</p>
+                    <p>1-15 gallons: 15 points</p>
+                    <input type="radio" id="q1-1" name="q1" value="15"><label for="q1-1">1-15 gallons</label><br>
+                    <p>16-30 gallons: 10 points</p>
+                    <input type="radio" id="q1-2" name="q1" value="10"><label for="q1-2">16-30 gallons</label><br>
+                    <p>31+ gallons: 5 points</p>
+                    <input type="radio" id="q1-3" name="q1" value="5"><label for="q1-3">31+ gallons</label>
+                </div>
+
+                <div class="question">
+                    <p>2. How do you get around?</p>
+                    <p>Public transport: 15 points</p>
+                    <input type="radio" id="q2-1" name="q2" value="15"><label for="q2-1">Public transport</label><br>
+                    <p>Electric car: 10 points</p>
+                    <input type="radio" id="q2-2" name="q2" value="10"><label for="q2-2">Electric car</label><br>
+                    <p>Regular car: 5 points</p>
+                    <input type="radio" id="q2-3" name="q2" value="5"><label for="q2-3">Regular car</label>
+                </div>
+
+                <div class="question">
+                    <p>3. How often do you recycle?</p>
+                    <p>Always: 15 points</p>
+                    <input type="radio" id="q3-1" name="q3" value="15"><label for="q3-1">Always</label><br>
+                    <p>Sometimes: 10 points</p>
+                    <input type="radio" id="q3-2" name="q3" value="10"><label for="q3-2">Sometimes</label><br>
+                    <p>Never: 5 points</p>
+                    <input type="radio" id="q3-3" name="q3" value="5"><label for="q3-3">Never</label>
+                </div>
+
+                <div class="question">
+                    <p>4. What type of energy do you use at home?</p>
+                    <p>Renewable sources: 15 points</p>
+                    <input type="radio" id="q4-1" name="q4" value="15"><label for="q4-1">Renewable sources</label><br>
+                    <p>Mixed sources: 10 points</p>
+                    <input type="radio" id="q4-2" name="q4" value="10"><label for="q4-2">Mixed sources</label><br>
+                    <p>Fossil fuels: 5 points</p>
+                    <input type="radio" id="q4-3" name="q4" value="5"><label for="q4-3">Fossil fuels</label>
+                </div>
+
+                <div class="question">
+                    <p>5. How much waste do you produce weekly?</p>
+                    <p>Less than 5 pounds: 15 points</p>
+                    <input type="radio" id="q5-1" name="q5" value="15"><label for="q5-1">Less than 5 pounds</label><br>
+                    <p>5-15 pounds: 10 points</p>
+                    <input type="radio" id="q5-2" name="q5" value="10"><label for="q5-2">5-15 pounds</label><br>
+                    <p>More than 15 pounds: 5 points</p>
+                    <input type="radio" id="q5-3" name="q5" value="5"><label for="q5-3">More than 15 pounds</label>
+                </div>
+            </form>
+
+            <div class="result">
+                <h3>Your Eco Score</h3>
+                <p>Your eco-score will appear here based on the points you selected.</p>
+            </div>
+
+            <h3>Eco Score and Carbon Footprint Guide</h3>
+            <table>
+                <tr>
+                    <th>Eco Score</th>
+                    <th>Carbon Footprint (kg CO2)</th>
+                </tr>
+                <tr>
+                    <td>65-75</td>
+                    <td>Very Low</td>
+                </tr>
+                <tr>
+                    <td>50-64</td>
+                    <td>Low</td>
+                </tr>
+                <tr>
+                    <td>35-49</td>
+                    <td>Medium</td>
+                </tr>
+                <tr>
+                    <td>20-34</td>
+                    <td>High</td>
+                </tr>
+                <tr>
+                    <td>0-19</td>
+                    <td>Very High</td>
+                </tr>
+            </table>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 EcoHaven</p>
+    </footer>
+</body>
+</html>

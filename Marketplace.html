@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoNest Marketplace</title>
+    <style>
+        ::-webkit-scrollbar {
+            width: 12px;
+          }
+          
+          ::-webkit-scrollbar-track {
+            background: rgba(153, 14, 14, 0.2);
+            border-radius: 10px;
+          }
+          
+          ::-webkit-scrollbar-thumb {
+            background-color: rgba(207, 23, 23, 0.5);
+            border-radius: 10px;
+            border: 2px solid rgba(0, 0, 0, 0.2);
+          }
+          
+          ::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(196, 169, 169, 0.8);
+          }
+          
+          html {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(8, 201, 8, 0.5) rgba(255, 255, 255, 0.2); /* Scrollbar design hmm will update soon to match the vibe */
+          }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #0e0b0b;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar-links {
+            display: flex;
+            gap: 20px;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 12px;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+        .navbar a:hover {
+            color: #ccc;
+        }
+        .desc-container {
+            padding: 50px 20px;
+            background-color: rgb(37, 34, 34);
+            color: rgb(206, 206, 206);
+        }
+        .desc-container h1 {
+            font-size: 36px;
+            color: #fff;
+        }
+        .desc-container p {
+            font-size: 18px;
+            color: #e0e0e0;
+        }
+        .marketplace-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            padding: 20px;
+            margin: 20px;
+        }
+        .marketplace-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+            cursor: pointer;
+            width: 300px;
+        }
+        .marketplace-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .marketplace-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .marketplace-card .info {
+            padding: 15px;
+        }
+        .marketplace-card .info h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .marketplace-card .info p {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .marketplace-card .info .price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1a7d1a;
+        }
+        .marketplace-card {
+          transition: transform 0.3s ease-in-out;
+        }
+        
+        .marketplace-card:hover {
+          transform: scale(1.05);
+        }
+        
+        footer {
+            background-color: #004d00;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .search-bar {
+          width: 100%;
+          max-width: 400px;
+          padding: 10px 15px;
+          font-size: 16px;
+          border: 1px solid #ddd;
+          border-radius: 25px;
+          outline: none;
+          transition: box-shadow 0.3s ease, border-color 0.3s ease;
+          background-color: #f9f9f9;
+          color: #333;
+          margin: 10px auto;
+          display: flexbox;
+      }
+      
+      .search-bar::placeholder {
+          color: #aaa;
+      }
+      
+      .search-bar:focus {
+          border-color: #0a854a;
+          box-shadow: 0 0 8px rgba(10, 133, 74, 0.5);
+          background-color: #fff;
+      }
+.desc-container {
+  padding: 50px 20px;
+  background-color: rgb(37, 34, 34);
+  color: rgb(206, 206, 206);
+  text-align: center;
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 10px auto;
+}
+
+/* Hover and Focus for Search Bar */
+.search-bar:hover,
+.search-bar:focus {
+  border-color: #0a854a;
+  box-shadow: 0 0 8px rgba(10, 133, 74, 0.5);
+}
+
+.navbar-filter {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.filter-dropdown {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 200px;
+}
+
+.filter-dropdown:hover {
+  border-color: #0a854a;
+  box-shadow: 0 0 8px rgba(10, 133, 74, 0.5);
+}
+
+.filter-dropdown:focus {
+  border-color: #0a854a;
+  box-shadow: 0 0 8px rgba(10, 133, 74, 0.5);
+}
+
+.navbar-filter select {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-filter select:hover {
+  background-color: #e0e0e0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-filter select:focus {
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(10, 133, 74, 0.5);
+}
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-links">
+            <a href="index.html">Home</a>
+            <a href="Eco-Lator.html">Eco-Calculator</a>
+            <a href="Zero-Waste Tips.html">Zero-Waste Tips</a>
+            <a href="Marketplace.html">EcoNest Marketplace</a>
+            <a href="Account.html">Account</a>
+            <a href="community.html">Community Chat</a>
+            <a href="about-us.html">About Us</a>
+        </div>
+    </div>
+
+    <div class="desc-container">
+      <h1>EcoNest Marketplace</h1>
+      <p>"Where Sustainable Choices Take Flight"</p>
+      <br>
+      <input type="text" placeholder="Search Here" class="search-bar">
+      
+      <div class="navbar-filter">
+          <select class="filter-dropdown">
+              <option value="all">All Categories</option>
+              <option value="kitchen">Kitchen</option>
+              <option value="fashion">Fashion</option>
+              <option value="electronics">Electronics</option>
+              <option value="home">Home</option>
+              <option value="toys">Toys</option>
+          </select>
+      </div>
+  </div>
+  
+  
+    <div class="marketplace-grid">
+      <div class="marketplace-card">
+          <img src="images/Marketplace-pics/utensils.jpg" alt="Reusable Bamboo Utensil Set">
+          <div class="info">
+              <h2>Reusable Bamboo Utensil Set</h2>
+              <p>A lightweight and portable set including a fork, spoon, knife, chopsticks, and a straw with a cleaning brush.</p>
+              <p class="price">350 PHP</p>
+              <p style="color: #007a00;">Posted By Seller: Nahida1027</p>
+              <a href="utensils.html" style="color: #004d00; text-decoration: underline;">More Info</a>
+          </div>
+      </div>
+      <div class="marketplace-card">
+          <img src="images/Marketplace-pics/Starter-kit.jpg" alt="Zero Waste Starter Kit">
+          <div class="info">
+              <h2>Zero Waste Starter Kit</h2>
+              <p>Everything you need to start a zero-waste journey, including reusable bags, utensils, and containers.</p>
+              <p class="price">200 PHP</p>
+              <p style="color: #007a00;">Posted By Seller: User137237</p>
+              <a href="" style="color: #004d00; text-decoration: underline;">More Info</a>
+          </div>
+      </div>
+      <div class="marketplace-card">
+          <img src="images/Marketplace-pics/phonecase.jpg" alt="Compostable Phone Case"> <!--making this made me realize theres a lot of stuff u can make using organic materials cool-->
+          <div class="info">
+              <h2>Compostable Samsung Galaxy Phone Case</h2>
+              <p>Durable, stylish, and eco-friendly phone case made from compostable materials.</p>
+              <p class="price">150 PHP</p>
+              <p style="color: #007a00;">Posted By Seller: 胡桃</p> <!-- Heh toatlly not made in china adding this for fun reasons hopefully its okay ehehehehe-->
+              <a href="" style="color: #004d00; text-decoration: underline;">More Info</a>
+          </div>
+      </div>
+      <div class="marketplace-card">
+          <img src="images/Marketplace-pics/makeup.png" alt="Skin Rewind Complexion Stick">
+          <div class="info">
+              <h2>Unused Skin Rewind Complexion Stick - Ilia Makeup</h2>
+              <p>High-performance, skin-loving ingredients for a flawless complexion.</p>
+              <p class="price">450 PHP</p>
+              <p style="color: #007a00;">Posted By Seller: NicoleAstrea</p>
+              <a href="" style="color: #004d00; text-decoration: underline;">More Info</a>
+          </div>
+      </div>
+      <div class="marketplace-card">
+        <img src="images/Marketplace-pics/stuffed-toy.png" alt="stuffed-toy.png">
+        <div class="info">
+            <h2>Pre-Loved Turtle stuffed-toy</h2>
+            <p>100% Organic made from 100% GOTS Certified organic cotton, and stuffed with organic corn PLA fibers.</p>
+            <p class="price">650 PHP</p>
+            <p style="color: #007a00;">Posted By Seller: User137237</p>
+            <a href="" style="color: #004d00; text-decoration: underline;">More Info</a><!--limited of webpages htmls files so soon to add if ever but yeah-->
+        </div>
+    </div>
+    <div class="marketplace-card">
+      <img src="images/Marketplace-pics/Bag.png" alt="Eco-Bag">
+      <div class="info">
+          <h2>Reusable Grocery Bags (3 Pack) </h2>
+          <p>Bought from amazon. Original price is 500php</p>
+          <p class="price">300 PHP</p>
+          <p style="color: #007a00;">Posted By Seller: Bonjour</p>
+          <a href="" style="color: #004d00; text-decoration: underline;">More Info</a><!--limited of webpages htmls files so soon to add if ever but yeah-->
+      </div>
+  </div>
+  <div class="marketplace-card">
+    <img src="images/Marketplace-pics/dish-cloth.png" alt="dish-cloth">
+    <div class="info">
+        <h2></h2>
+        <p>REASON: Decluttering moving out of apartment. Buyer will pay for Sf</p>
+        <p class="price">FREE</p>
+        <p style="color: #007a00;">Posted By Seller: Nahida1027</p>
+        <a href="" style="color: #004d00; text-decoration: underline;">More Info</a><!--limited of webpages htmls files so soon to add if ever but yeah-->
+    </div>
+</div>
+<div class="marketplace-card">
+  <img src="images/Marketplace-pics/sofa.jpg" alt="sofa">
+  <div class="info">
+      <h2>Bnew Sabai Design Couch</h2>
+      <p>As for the fabrics, they are made from Greenguard Gold-certified upcycled polyester, or recycled velvet carrying the OEKO-TEX and GRS certifications.</p>
+      <p class="price">5.500 PHP</p>
+      <p style="color: #007a00;">Posted By Seller: Mark_Slayer</p>
+      <a href="" style="color: #004d00; text-decoration: underline;">More Info</a><!--limited of webpages htmls files so soon to add if ever but yeah-->
+  </div>
+</div>
+  </div>
+  
+  
+
+    
+
+    <footer>
+        <p>&copy; 2024 EcoHaven</p>
+    </footer>
+</body>
+</html>
